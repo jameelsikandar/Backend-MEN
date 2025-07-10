@@ -75,11 +75,11 @@ userSchema.methods.generateAccessToken = function () {
             username: this.username,
             fullname: this.fullName
         },
-        process.env.ACCESS_TOKEN_ACCESS,
+        process.env.ACCESS_TOKEN_SECRET,
         {
             expiresIn: process.env.ACCESS_TOKEN_EXPIRY
         }
-    )
+    );
 };
 
 userSchema.methods.generateRefreshToken = function () {
