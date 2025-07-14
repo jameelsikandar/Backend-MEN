@@ -251,7 +251,8 @@ const changeUserPassword = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Old Password is wrong")
     }
 
-    user.password(newPassword)
+    user.password = newPassword
+
     await user.save({ validateBeforeSave: false })
 
     return res
@@ -326,7 +327,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
 });
 
 const updateCoverImage = asyncHandler(async (req, res) => {
-    const coverLocalPath = req.body?.path
+    const coverLocalPath = req.file?.path
 
     if (!coverLocalPath) {
         throw new ApiError(400, "Cover image is missing")
